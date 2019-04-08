@@ -1,13 +1,13 @@
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import CheckCircle from "@material-ui/icons/CheckCircle";
+import React from 'react'
+import Avatar from 'mineral-ui/Avatar'
+import CheckCircle from 'mineral-ui-icons/IconCheckCircle'
 
 const AcceptedIcon = () => (
   <Avatar>
     <CheckCircle />
   </Avatar>
-);
+)
 
-AcceptedIcon.displayName = "AcceptedIcon";
+AcceptedIcon.displayName = 'AcceptedIcon'
 
-export default AcceptedIcon;
+export default AcceptedIcon

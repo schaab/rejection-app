@@ -1,41 +1,37 @@
-import React from "react";
-import { render, cleanup } from "react-testing-library";
-import "jest-dom/extend-expect";
-import Question from "../Question";
+import React from 'react'
+import { render, cleanup } from 'react-testing-library'
+import 'jest-dom/extend-expect'
+import Question from '../Question'
 
-describe("<Question />", () => {
-  afterEach(cleanup);
+describe('<Question />', () => {
+  afterEach(cleanup)
 
-  test("given no props it should render a default component", () => {
-    const { getByTestId } = render(<Question />);
+  test('given no props it should render a default component', () => {
+    const { container } = render(<Question />)
 
-    expect(getByTestId("question-text")).toHaveTextContent("");
-    expect(getByTestId("question-askee")).toHaveTextContent("Unknown");
-  });
+    expect(container).toHaveTextContent('')
+    expect(container).toHaveTextContent('Unknown')
+  })
 
-  test("given a valid question it should render a question", () => {
-    const { getByTestId } = render(
+  test('given a valid question it should render a question', () => {
+    const { container } = render(
       <Question
         question="What is best in life?"
         askee="Arnold"
         status="Rejected"
       />
-    );
+    )
 
-    expect(getByTestId("question-text")).toHaveTextContent(
-      "What is best in life?"
-    );
-    expect(getByTestId("question-askee")).toHaveTextContent("Arnold");
-  });
+    expect(container).toHaveTextContent('What is best in life?')
+    expect(container).toHaveTextContent('Arnold')
+  })
 
-  test("given a partial question it should render a question", () => {
-    const { getByTestId } = render(
+  test('given a partial question it should render a question', () => {
+    const { container } = render(
       <Question question="What is best in life?" status="Rejected" />
-    );
+    )
 
-    expect(getByTestId("question-text")).toHaveTextContent(
-      "What is best in life?"
-    );
-    expect(getByTestId("question-askee")).toHaveTextContent("Unknown");
-  });
-});
+    expect(container).toHaveTextContent('What is best in life?')
+    expect(container).toHaveTextContent('Unknown')
+  })
+})

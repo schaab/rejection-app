@@ -1,36 +1,40 @@
-import React from "react";
-import { render, cleanup } from "react-testing-library";
-import "jest-dom/extend-expect";
-import QuestionList from "../QuestionList";
+import React from 'react'
+import { render, cleanup } from 'react-testing-library'
+import 'jest-dom/extend-expect'
+import QuestionList from '../QuestionList'
 
-describe("<QuestionList />", () => {
-  afterEach(cleanup);
+describe('<QuestionList />', () => {
+  afterEach(cleanup)
 
-  test("given nothing it should render an encouraging message to get asking", () => {
-    const { container } = render(<QuestionList />);
-    const actual = container.firstChild;
-    const expected = "Get asking to earn points!";
+  test('given nothing it should render an encouraging message to get asking', () => {
+    const { container } = render(<QuestionList />)
 
-    expect(actual).toHaveTextContent(expected);
-  });
-  const createQuestion = ({ question = "", askee = "", status = "" }) => ({
+    expect(container).toHaveTextContent('Get asking to earn points!')
+  })
+
+  const createQuestion = ({
+    id = '',
+    question = '',
+    askee = '',
+    status = '',
+  }) => ({
+    id,
     question,
     askee,
-    status
-  });
+    status,
+  })
 
-  test("given a list containing a single question it should render it", () => {
+  test('given a list containing a single question it should render it', () => {
     const questions = [
       createQuestion({
-        question: "May I have a $10,000 raise?",
-        askee: "boss",
-        status: "Rejected"
-      })
-    ];
-    const { getByText } = render(<QuestionList questions={questions} />);
+        id: '22',
+        question: 'May I have a $10,000 raise?',
+        askee: 'boss',
+        status: 'Rejected',
+      }),
+    ]
+    const { container } = render(<QuestionList questions={questions} />)
 
-    const actual = getByText("May I have a $10,000 raise?");
-
-    expect(actual).toHaveLength(1);
-  });
-});
+    expect(container).toHaveTextContent('May I have a $10,000 raise?')
+  })
+})

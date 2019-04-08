@@ -1,35 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import QuestionIcon from "./QuestionIcon";
-import QuestionMeta from "./QuestionMeta";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { FlexItem } from 'mineral-ui/Flex'
+import Text from 'mineral-ui/Text'
+import QuestionIcon from './QuestionIcon'
 
 const Question = ({
-  question = "",
-  askee = "Unknown",
-  status = "Rejected"
+  question = '',
+  askee = 'Unknown',
+  status = 'Rejected',
 }) => {
-  const questionText = (
-    <QuestionMeta content={question} data-testid="question-text" />
-  );
-  const questionAskee = (
-    <QuestionMeta content={askee} data-testid="question-askee" />
-  );
   return (
-    <ListItem>
+    <FlexItem>
       <QuestionIcon status={status} />
-      <ListItemText primary={questionText} secondary={questionAskee} />
-    </ListItem>
-  );
-};
+      <Text className="question-text">{question}</Text>
+      <Text className="question-askee">{askee}</Text>
+    </FlexItem>
+  )
+}
 
 Question.propTypes = {
   question: PropTypes.string,
   askee: PropTypes.string,
-  status: PropTypes.oneOf(["Accepted", "Rejected"])
-};
+  status: PropTypes.oneOf(['Accepted', 'Rejected']),
+}
 
-Question.displayName = "Question";
+Question.displayName = 'Question'
 
-export default Question;
+export default Question

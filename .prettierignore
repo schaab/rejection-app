@@ -1,0 +1,5 @@
+.next/
+*.config.js
+public/
+package.json
+package.lock.json

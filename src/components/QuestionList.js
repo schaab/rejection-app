@@ -1,31 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
-import List from "@material-ui/core/List";
-import Question from "./Question";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Flex from 'mineral-ui/Flex'
+import Question from './Question'
 
-const toQuestionComponent = ({ question, askee, status }) => (
-  <Question key={question} question={question} askee={askee} status={status} />
-);
+const toQuestionComponent = ({ id, question, askee, status }) => (
+  <Question key={id} question={question} askee={askee} status={status} />
+)
 
 const QuestionList = ({ questions = [] }) => {
   if (questions.length === 0) {
-    return <div>Get asking to earn points!</div>;
+    return <div>Get asking to earn points!</div>
   }
 
-  const questionList = questions.map(toQuestionComponent);
+  const questionList = questions.map(toQuestionComponent)
 
-  return <List>{questionList}</List>;
-};
+  return <Flex direction="column">{questionList}</Flex>
+}
 
-QuestionList.displayName = "QuestionList";
+QuestionList.displayName = 'QuestionList'
 QuestionList.propTypes = {
   questions: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string.isRequired,
       question: PropTypes.string,
       askee: PropTypes.string,
-      status: PropTypes.string
+      status: PropTypes.string,
     })
-  )
-};
+  ),
+}
 
-export default QuestionList;
+export default QuestionList

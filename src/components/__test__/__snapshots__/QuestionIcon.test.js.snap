@@ -1,67 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<QuestionIcon /> given a rejected status it should render a rejected icon 1`] = `
-<div
-  class="MuiAvatar-root-13 MuiAvatar-colorDefault-14"
+<span
+  class="css-1qcvi78 e15mnca50"
 >
   <svg
     aria-hidden="true"
-    class="MuiSvgIcon-root-16"
+    class="css-15i4537 edsisxk0"
     focusable="false"
-    role="presentation"
+    role="img"
     viewBox="0 0 24 24"
   >
-    <path
-      d="M0 0h24v24H0z"
-      fill="none"
-    />
-    <path
-      d="M6 6h12v12H6z"
-    />
+    <g>
+      <path
+        d="M6 6h12v12H6z"
+      />
+    </g>
   </svg>
-</div>
+</span>
 `;
 
 exports[`<QuestionIcon /> given an accepted status it should render an accepted icon 1`] = `
-<div
-  class="MuiAvatar-root-25 MuiAvatar-colorDefault-26"
+<span
+  class="css-1qcvi78 e15mnca50"
 >
   <svg
     aria-hidden="true"
-    class="MuiSvgIcon-root-28"
+    class="css-15i4537 edsisxk0"
     focusable="false"
-    role="presentation"
+    role="img"
     viewBox="0 0 24 24"
   >
-    <path
-      d="M0 0h24v24H0z"
-      fill="none"
-    />
-    <path
-      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-    />
+    <g>
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+      />
+    </g>
   </svg>
-</div>
+</span>
 `;
 
 exports[`<QuestionIcon /> given no props it should render a default component 1`] = `
-<div
-  class="MuiAvatar-root-1 MuiAvatar-colorDefault-2"
+<span
+  class="css-1qcvi78 e15mnca50"
 >
   <svg
     aria-hidden="true"
-    class="MuiSvgIcon-root-4"
+    class="css-15i4537 edsisxk0"
     focusable="false"
-    role="presentation"
+    role="img"
     viewBox="0 0 24 24"
   >
-    <path
-      d="M0 0h24v24H0z"
-      fill="none"
-    />
-    <path
-      d="M6 6h12v12H6z"
-    />
+    <g>
+      <path
+        d="M6 6h12v12H6z"
+      />
+    </g>
   </svg>
-</div>
+</span>
 `;
