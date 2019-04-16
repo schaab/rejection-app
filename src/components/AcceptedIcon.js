@@ -1,10 +1,10 @@
 import React from 'react'
-import Avatar from 'mineral-ui/Avatar'
-import CheckCircle from 'mineral-ui-icons/IconCheckCircle'
+import Avatar from '@material-ui/core/Avatar'
+import CheckCircleOutlineOutlined from '@material-ui/icons/CheckCircleOutlineOutlined'
 
 const AcceptedIcon = () => (
   <Avatar>
-    <CheckCircle />
+    <CheckCircleOutlineOutlined />
   </Avatar>
 )
 

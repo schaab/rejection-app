@@ -1,1 +1,3 @@
-{"presets": ["kcd-scripts/babel"]}
+{
+    "presets": ["kcd-scripts/babel"]
+}

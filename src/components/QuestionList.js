@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Flex from 'mineral-ui/Flex'
+import List from '@material-ui/core/List'
 import Question from './Question'
 
 const toQuestionComponent = ({ id, question, askee, status }) => (
@@ -12,9 +12,7 @@ const QuestionList = ({ questions = [] }) => {
     return <div>Get asking to earn points!</div>
   }
 
-  const questionList = questions.map(toQuestionComponent)
-
-  return <Flex direction="column">{questionList}</Flex>
+  return <List>{ questions.map(toQuestionComponent) }</List>
 }
 
 QuestionList.displayName = 'QuestionList'

@@ -1,61 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<QuestionIcon /> given a rejected status it should render a rejected icon 1`] = `
-<span
-  class="css-1qcvi78 e15mnca50"
+<div
+  class="MuiAvatar-root-13 MuiAvatar-colorDefault-14"
 >
   <svg
     aria-hidden="true"
-    class="css-15i4537 edsisxk0"
+    class="MuiSvgIcon-root-16"
     focusable="false"
-    role="img"
+    role="presentation"
     viewBox="0 0 24 24"
   >
-    <g>
-      <path
-        d="M6 6h12v12H6z"
-      />
-    </g>
+    <path
+      d="M0 0h24v24H0V0z"
+      fill="none"
+    />
+    <path
+      d="M16 8v8H8V8h8m2-2H6v12h12V6z"
+    />
   </svg>
-</span>
+</div>
 `;
 
 exports[`<QuestionIcon /> given an accepted status it should render an accepted icon 1`] = `
-<span
-  class="css-1qcvi78 e15mnca50"
+<div
+  class="MuiAvatar-root-25 MuiAvatar-colorDefault-26"
 >
   <svg
     aria-hidden="true"
-    class="css-15i4537 edsisxk0"
+    class="MuiSvgIcon-root-28"
     focusable="false"
-    role="img"
+    role="presentation"
     viewBox="0 0 24 24"
   >
+    <path
+      d="M0 0h24v24H0V0z"
+      fill="none"
+    />
     <g>
       <path
-        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+      />
+      <path
+        d="M16.59 7.58L10 14.17l-2.59-2.58L6 13l4 4 8-8z"
       />
     </g>
   </svg>
-</span>
+</div>
 `;
 
 exports[`<QuestionIcon /> given no props it should render a default component 1`] = `
-<span
-  class="css-1qcvi78 e15mnca50"
+<div
+  class="MuiAvatar-root-1 MuiAvatar-colorDefault-2"
 >
   <svg
     aria-hidden="true"
-    class="css-15i4537 edsisxk0"
+    class="MuiSvgIcon-root-4"
     focusable="false"
-    role="img"
+    role="presentation"
     viewBox="0 0 24 24"
   >
-    <g>
-      <path
-        d="M6 6h12v12H6z"
-      />
-    </g>
+    <path
+      d="M0 0h24v24H0V0z"
+      fill="none"
+    />
+    <path
+      d="M16 8v8H8V8h8m2-2H6v12h12V6z"
+    />
   </svg>
-</span>
+</div>
 `;

@@ -1,10 +1,10 @@
 import React from 'react'
-import Avatar from 'mineral-ui/Avatar'
-import StopIcon from 'mineral-ui-icons/IconStop'
+import Avatar from '@material-ui/core/Avatar'
+import StopOutlined from '@material-ui/icons/StopOutlined'
 
 const RejectedIcon = () => (
   <Avatar>
-    <StopIcon />
+    <StopOutlined />
   </Avatar>
 )
 

@@ -1,6 +1,7 @@
 import React from 'react'
+import Paper from '@material-ui/core/Paper';
 import QuestionList from '../src/components/QuestionList'
-import { ThemeProvider } from 'mineral-ui/themes'
+import NewQuestion from '../src/components/NewQuestion'
 
 const App = () => {
   const questions = [
@@ -19,9 +20,10 @@ const App = () => {
   ]
 
   return (
-    <ThemeProvider>
+    <Paper>
+      <NewQuestion />
       <QuestionList questions={questions} />
-    </ThemeProvider>
+    </Paper>
   )
 }
 

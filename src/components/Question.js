@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FlexItem } from 'mineral-ui/Flex'
-import Text from 'mineral-ui/Text'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 import QuestionIcon from './QuestionIcon'
 
 const Question = ({
@@ -10,11 +10,10 @@ const Question = ({
   status = 'Rejected',
 }) => {
   return (
-    <FlexItem>
+    <ListItem>
       <QuestionIcon status={status} />
-      <Text className="question-text">{question}</Text>
-      <Text className="question-askee">{askee}</Text>
-    </FlexItem>
+      <ListItemText primary={question} secondary={askee} />
+    </ListItem>
   )
 }
 
