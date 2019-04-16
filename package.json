@@ -8,6 +8,7 @@
     "@material-ui/icons": "latest",
     "jss": "latest",
     "next": "latest",
+    "next-redux-wrapper": "^3.0.0-alpha.2",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",

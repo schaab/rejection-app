@@ -12,7 +12,7 @@ const QuestionList = ({ questions = [] }) => {
     return <div>Get asking to earn points!</div>
   }
 
-  return <List>{ questions.map(toQuestionComponent) }</List>
+  return <List>{questions.map(toQuestionComponent)}</List>
 }
 
 QuestionList.displayName = 'QuestionList'

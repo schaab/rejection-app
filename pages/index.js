@@ -1,5 +1,5 @@
 import React from 'react'
-import Paper from '@material-ui/core/Paper';
+import Paper from '@material-ui/core/Paper'
 import QuestionList from '../src/components/QuestionList'
 import NewQuestion from '../src/components/NewQuestion'
 
