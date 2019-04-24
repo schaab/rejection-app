@@ -6,7 +6,7 @@ import withRedux from 'next-redux-wrapper'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import JssProvider from 'react-jss/lib/JssProvider'
-import initStore from '../src/reducers/store'
+import initStore from '../src/redux/store'
 import getPageContext from '../src/getPageContext'
 
 class RejectionApp extends App {

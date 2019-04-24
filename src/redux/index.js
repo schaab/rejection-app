@@ -67,7 +67,8 @@ export const newQuestionReducer = (
   }
 }
 
-export const fetchQuestions = () => ({ type: 'FETCH_QUESTIONS' })
+export const fetchQuestions = () => ({ type: fetchQuestions.type })
+fetchQuestions.type = 'FETCH_QUESTIONS'
 
 export const questionsReducer = (
   state = [],

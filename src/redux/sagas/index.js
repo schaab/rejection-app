@@ -19,9 +19,11 @@ export function* watchFetchQuestions() {
   yield takeEvery('FETCH_TODOS', fetchQuestions)
 }
 
+export const getQuestions = () => localStorage.getItem('questions')
+
 export function* createQuestion({ payload = {} } = {}) {
   try {
-    const questions = yield call(localStorage.getItem, 'questions')
+    const questions = yield call(getQuestions)
 
     yield call(
       localStorage.setItem,

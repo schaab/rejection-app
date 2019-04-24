@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, compose } from 'redux'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
@@ -16,8 +16,7 @@ import {
   updateAskee,
   updateStatus,
   addQuestion,
-} from '../reducers'
-import { pipe } from '../utils'
+} from '../redux'
 
 const styles = theme => ({
   root: {
@@ -93,7 +92,7 @@ const NewQuestion = ({ classes = {}, addQuestion }) => {
 }
 
 NewQuestion.displayName = 'NewQuestion'
-NewQuestion.propType = {
+NewQuestion.propTypes = {
   classes: PropTypes.object.isRequired,
   addQuestion: PropTypes.func.isRequired,
 }
@@ -102,10 +101,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addQuestion }, dispatch)
 }
 
-export default pipe(
+export default compose(
+  withStyles(styles),
   connect(
     null,
     mapDispatchToProps
   ),
-  withStyles(styles)
 )(NewQuestion)
