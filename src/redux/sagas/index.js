@@ -1,25 +1,28 @@
 import { all, takeEvery, put, call } from 'redux-saga/effects'
+import {
+  fetchQuestionsSuccess,
+  fetchQuestions,
+  fetchQuestionsErorr,
+} from '../index'
 
-export function* fetchQuestions() {
+export const getQuestionsFromLocalStorage = () =>
+  localStorage.getItem('questions')
+
+export function* getQuestions() {
   try {
     // retrieve from local storage
-    const questions = yield call(localStorage.getItem, 'questions')
-    yield put({
-      type: 'FETCH_QUESTIONS_SUCCESS',
-      payload: {
-        questions: JSON.parse(questions),
-      },
-    })
+    const questionsFromStorage = yield call(getQuestions)
+    const questions =
+      questionsFromStorage === null ? [] : JSON.parse(questionsFromStorage)
+    yield put(fetchQuestionsSuccess(questions))
   } catch (e) {
-    console.error('fetchQuestions error:', e.message)
+    yield put(fetchQuestionsErorr())
   }
 }
 
 export function* watchFetchQuestions() {
-  yield takeEvery('FETCH_TODOS', fetchQuestions)
+  yield takeEvery(fetchQuestions.type, getQuestions)
 }
-
-export const getQuestions = () => localStorage.getItem('questions')
 
 export function* createQuestion({ payload = {} } = {}) {
   try {

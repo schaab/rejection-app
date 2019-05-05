@@ -70,12 +70,25 @@ export const newQuestionReducer = (
 export const fetchQuestions = () => ({ type: fetchQuestions.type })
 fetchQuestions.type = 'FETCH_QUESTIONS'
 
+export const fetchQuestionsSuccess = (questions = []) => ({
+  type: fetchQuestionsSuccess.type,
+  payload: {
+    questions,
+  },
+})
+fetchQuestionsSuccess.type = 'FETCH_QUESTIONS_SUCCESS'
+
+export const fetchQuestionsErorr = () => ({
+  type: fetchQuestionsErorr.type,
+})
+fetchQuestionsErorr.type = 'FETCH_QUESTIONS_ERROR'
+
 export const questionsReducer = (
   state = [],
   { type = '', payload = {} } = {}
 ) => {
   switch (type) {
-    case 'FETCH_QUESTIONS_SUCCESS':
+    case fetchQuestionsSuccess.type:
       return payload.questions
     default:
       return state

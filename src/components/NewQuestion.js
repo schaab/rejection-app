@@ -106,5 +106,5 @@ export default compose(
   connect(
     null,
     mapDispatchToProps
-  ),
+  )
 )(NewQuestion)

@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "jest-dom": "latest",
+    "jest-localstorage-mock": "^2.4.0",
     "kcd-scripts": "latest",
     "react-testing-library": "latest"
   }
