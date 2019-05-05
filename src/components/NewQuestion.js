@@ -31,12 +31,12 @@ const styles = theme => ({
   },
 })
 
-const NewQuestion = ({ classes = {}, addQuestion }) => {
+const NewQuestion = ({ classes = {}, dispatchAddQuestion }) => {
   const [state, dispatch] = useReducer(newQuestionReducer, newQuestionReducer())
 
   const handleOnClick = () => {
     const { question, askee, status } = state
-    addQuestion({ question, askee, status })
+    dispatchAddQuestion({ question, askee, status })
   }
 
   return (
@@ -94,12 +94,10 @@ const NewQuestion = ({ classes = {}, addQuestion }) => {
 NewQuestion.displayName = 'NewQuestion'
 NewQuestion.propTypes = {
   classes: PropTypes.object.isRequired,
-  addQuestion: PropTypes.func.isRequired,
+  dispatchAddQuestion: PropTypes.func.isRequired,
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addQuestion }, dispatch)
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({ dispatchAddQuestion: addQuestion }, dispatch)
 
 export default compose(
   withStyles(styles),

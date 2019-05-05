@@ -15,7 +15,6 @@ export const addQuestion = ({
     time: Date.now(),
   },
 })
-
 addQuestion.type = 'ADD_QUESTION'
 
 export const updateQuestion = ({ question = 'Nothing to see here' }) => ({
@@ -78,10 +77,11 @@ export const fetchQuestionsSuccess = (questions = []) => ({
 })
 fetchQuestionsSuccess.type = 'FETCH_QUESTIONS_SUCCESS'
 
-export const fetchQuestionsErorr = () => ({
-  type: fetchQuestionsErorr.type,
+export const fetchQuestionsError = (e) => ({
+  type: fetchQuestionsError.type,
+  payload: e,
 })
-fetchQuestionsErorr.type = 'FETCH_QUESTIONS_ERROR'
+fetchQuestionsError.type = 'FETCH_QUESTIONS_ERROR'
 
 export const questionsReducer = (
   state = [],
@@ -90,6 +90,10 @@ export const questionsReducer = (
   switch (type) {
     case fetchQuestionsSuccess.type:
       return payload.questions
+    case fetchQuestionsError.type:
+      return [];
+    case addQuestion.type:
+      return [...state, payload];
     default:
       return state
   }

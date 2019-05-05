@@ -2,7 +2,8 @@ import { all, takeEvery, put, call } from 'redux-saga/effects'
 import {
   fetchQuestionsSuccess,
   fetchQuestions,
-  fetchQuestionsErorr,
+  fetchQuestionsError,
+  addQuestion,
 } from '../index'
 
 export const getQuestionsFromLocalStorage = () =>
@@ -10,13 +11,12 @@ export const getQuestionsFromLocalStorage = () =>
 
 export function* getQuestions() {
   try {
-    // retrieve from local storage
-    const questionsFromStorage = yield call(getQuestions)
+    const questionsFromStorage = yield call(getQuestionsFromLocalStorage)
     const questions =
       questionsFromStorage === null ? [] : JSON.parse(questionsFromStorage)
     yield put(fetchQuestionsSuccess(questions))
   } catch (e) {
-    yield put(fetchQuestionsErorr())
+    yield put(fetchQuestionsError(e.message))
   }
 }
 
@@ -26,12 +26,12 @@ export function* watchFetchQuestions() {
 
 export function* createQuestion({ payload = {} } = {}) {
   try {
-    const questions = yield call(getQuestions)
+    // get the questions from state
 
     yield call(
       localStorage.setItem,
       'questions',
-      JSON.stringify([...questions, payload])
+      JSON.stringify([payload])
     )
     yield put({ type: 'FETCH_QUESTIONS' })
   } catch (e) {
@@ -40,7 +40,7 @@ export function* createQuestion({ payload = {} } = {}) {
 }
 
 export function* watchAddQuestion() {
-  yield takeEvery('ADD_QUESTION', createQuestion)
+  yield takeEvery(addQuestion.type, createQuestion)
 }
 
 export default function* rootSaga() {

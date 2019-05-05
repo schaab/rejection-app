@@ -11,7 +11,6 @@ const QuestionList = ({ questions = [] }) => {
   if (questions.length === 0) {
     return <div>Get asking to earn points!</div>
   }
-
   return <List>{questions.map(toQuestionComponent)}</List>
 }
 

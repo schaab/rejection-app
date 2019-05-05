@@ -4,12 +4,13 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Paper from '@material-ui/core/Paper'
-import { fetchQuestions } from '../redux'
+import { fetchQuestions } from '../redux';
 import QuestionList from './QuestionList'
 import NewQuestion from './NewQuestion'
 
 const App = ({ questions, dispatchFetchQuestions }) => {
-  useEffect(() => dispatchFetchQuestions(), [dispatchFetchQuestions])
+  useEffect(() => dispatchFetchQuestions, [dispatchFetchQuestions])
+
   return (
     <Paper>
       <NewQuestion />
@@ -29,18 +30,15 @@ App.propTypes = {
       time: PropTypes.instanceOf(Date),
     })
   ),
-  dispatchFetchQuestions: PropTypes.func,
 }
 
-const mapStateToProps = state => ({
-  questions: state,
+const mapStateToProps = ({ questions }) => ({
+  questions,
 })
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchQuestions }, dispatch)
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({ dispatchFetchQuestions: fetchQuestions }, dispatch)
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(App)
