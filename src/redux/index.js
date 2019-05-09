@@ -1,35 +1,50 @@
 import { combineReducers } from 'redux'
 
-let nextId = 0
+let nextId = 1
 export const addQuestion = ({
   question = 'What is your name',
   askee = 'stranger',
   status = 'Rejected',
-}) => ({
+} = {}) => ({
   type: addQuestion.type,
   payload: {
-    id: nextId++,
+    id: `${nextId++}`,
     question,
     askee,
     status,
-    time: Date.now(),
+    time: Date(),
   },
 })
 addQuestion.type = 'ADD_QUESTION'
 
-export const updateQuestion = ({ question = 'Nothing to see here' }) => ({
+export const addQuestionError = ({
+  message = 'failure',
+} = {}) => ({
+  type: addQuestionError.type,
+  payload: {
+    message,
+  }
+})
+addQuestionError.type = 'ADD_QUESTION_ERROR'
+
+export const addQuestionSuccess = () => ({
+  type: addQuestionSuccess.type,
+})
+addQuestionSuccess.type = 'ADD_QUESTION_SUCCESS'
+
+export const updateQuestion = ({ question = 'Nothing to see here' } = {}) => ({
   type: updateQuestion.type,
   payload: { question },
 })
 updateQuestion.type = 'UPDATE_QUESTION'
 
-export const updateAskee = ({ askee = 'Unknown' }) => ({
+export const updateAskee = ({ askee = 'Unknown' } = {}) => ({
   type: updateAskee.type,
   payload: { askee },
 })
 updateAskee.type = 'UPDATE_ASKEE'
 
-export const updateStatus = ({ status = 'Rejected' }) => ({
+export const updateStatus = ({ status = 'Rejected' } = {}) => ({
   type: updateStatus.type,
   payload: { status },
 })
@@ -61,37 +76,18 @@ export const newQuestionReducer = (
         ...state,
         status: payload.status,
       }
+    case addQuestionSuccess.type:
+      return initialState
     default:
       return state
   }
 }
-
-export const fetchQuestions = () => ({ type: fetchQuestions.type })
-fetchQuestions.type = 'FETCH_QUESTIONS'
-
-export const fetchQuestionsSuccess = (questions = []) => ({
-  type: fetchQuestionsSuccess.type,
-  payload: {
-    questions,
-  },
-})
-fetchQuestionsSuccess.type = 'FETCH_QUESTIONS_SUCCESS'
-
-export const fetchQuestionsError = (e) => ({
-  type: fetchQuestionsError.type,
-  payload: e,
-})
-fetchQuestionsError.type = 'FETCH_QUESTIONS_ERROR'
 
 export const questionsReducer = (
   state = [],
   { type = '', payload = {} } = {}
 ) => {
   switch (type) {
-    case fetchQuestionsSuccess.type:
-      return payload.questions
-    case fetchQuestionsError.type:
-      return [];
     case addQuestion.type:
       return [...state, payload];
     default:
@@ -101,7 +97,7 @@ export const questionsReducer = (
 
 const rejectionApp = combineReducers({
   newQuestionReducer,
-  questionsReducer,
+  questions: questionsReducer,
 })
 
 export default rejectionApp

@@ -1,41 +1,30 @@
-import { all, takeEvery, put, call } from 'redux-saga/effects'
 import {
-  fetchQuestionsSuccess,
-  fetchQuestions,
-  fetchQuestionsError,
+  all,
+  takeEvery,
+  put,
+  call,
+  select,
+} from 'redux-saga/effects'
+import {
   addQuestion,
+  addQuestionSuccess,
+  addQuestionError,
 } from '../index'
+import { questionsSelector } from '../selectors';
 
-export const getQuestionsFromLocalStorage = () =>
-  localStorage.getItem('questions')
-
-export function* getQuestions() {
-  try {
-    const questionsFromStorage = yield call(getQuestionsFromLocalStorage)
-    const questions =
-      questionsFromStorage === null ? [] : JSON.parse(questionsFromStorage)
-    yield put(fetchQuestionsSuccess(questions))
-  } catch (e) {
-    yield put(fetchQuestionsError(e.message))
-  }
-}
-
-export function* watchFetchQuestions() {
-  yield takeEvery(fetchQuestions.type, getQuestions)
-}
+const setQuestions = (questions) => localStorage.setItem('questions', questions)
 
 export function* createQuestion({ payload = {} } = {}) {
   try {
-    // get the questions from state
+    const questions = yield select(questionsSelector)
 
     yield call(
-      localStorage.setItem,
-      'questions',
-      JSON.stringify([payload])
+      setQuestions,
+      JSON.stringify([...questions, payload])
     )
-    yield put({ type: 'FETCH_QUESTIONS' })
+    yield put(addQuestionSuccess())
   } catch (e) {
-    console.error('createQuestion.error', e.message)
+    yield put(addQuestionError(e.message))
   }
 }
 
@@ -44,5 +33,5 @@ export function* watchAddQuestion() {
 }
 
 export default function* rootSaga() {
-  yield all([watchAddQuestion(), watchFetchQuestions()])
+  yield all([watchAddQuestion()])
 }
