@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import Paper from '@material-ui/core/Paper'
-import { bindActionCreators } from 'redux';
-import { loadQuestions } from '../redux';
+import { bindActionCreators } from 'redux'
+import { loadQuestions } from '../redux'
 import QuestionList from './QuestionList'
 import NewQuestion from './NewQuestion'
 
 const App = ({ questions, dispatchLoadQuestions }) => {
   useEffect(() => {
     const questionsJson = localStorage.getItem('questions')
-    const payload = { 
-      questions: questionsJson === null ? [] : JSON.parse(questionsJson)
+    const payload = {
+      questions: questionsJson === null ? [] : JSON.parse(questionsJson),
     }
     dispatchLoadQuestions(payload)
   }, [dispatchLoadQuestions])
@@ -42,9 +42,10 @@ const mapStateToProps = ({ questions }) => ({
   questions,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ dispatchLoadQuestions: loadQuestions}, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ dispatchLoadQuestions: loadQuestions }, dispatch)
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(App)

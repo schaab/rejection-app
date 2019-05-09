@@ -19,5 +19,4 @@ describe('questions reducer', () => {
     status,
     time,
   })
-
 })

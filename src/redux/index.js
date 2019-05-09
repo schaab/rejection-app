@@ -20,8 +20,8 @@ updateStatus.type = 'UPDATE_STATUS'
 
 export const questionSubmitted = () => ({
   type: questionSubmitted.type,
-});
-questionSubmitted.type = 'QUESTION_SUBMITTED';
+})
+questionSubmitted.type = 'QUESTION_SUBMITTED'
 
 const initialState = {
   question: '',
@@ -71,13 +71,11 @@ export const addQuestion = ({
 })
 addQuestion.type = 'ADD_QUESTION'
 
-export const addQuestionError = ({
-  message = 'failure',
-} = {}) => ({
+export const addQuestionError = ({ message = 'failure' } = {}) => ({
   type: addQuestionError.type,
   payload: {
     message,
-  }
+  },
 })
 addQuestionError.type = 'ADD_QUESTION_ERROR'
 
@@ -85,7 +83,7 @@ export const loadQuestions = ({ questions = [] } = {}) => ({
   type: loadQuestions.type,
   payload: {
     questions,
-  }
+  },
 })
 loadQuestions.type = 'LOAD_QUESTIONS'
 
@@ -94,8 +92,7 @@ export const questionsReducer = (
   { type = '', payload = {} } = {}
 ) => {
   switch (type) {
-    case addQuestion.type: 
-    {
+    case addQuestion.type: {
       const nextId = state.reduce((a, b) => Math.max(a, b), 0)
       return [...state, { ...payload, id: nextId + 1 }]
     }

@@ -10,7 +10,7 @@ describe('getQuestions', () => {
 
   test('given a new question it should put it in localStorage', () => {
     const dispatched = []
-    const addQuestionAction = addQuestion();
+    const addQuestionAction = addQuestion()
     runSaga(
       {
         dispatch: action => dispatched.push(action),
@@ -19,17 +19,17 @@ describe('getQuestions', () => {
       createQuestion
     )
 
-    const expected = JSON.stringify([addQuestionAction.payload]);
-    expect(localStorage.__STORE__['questions']).toBe(expected);
+    const expected = JSON.stringify([addQuestionAction.payload])
+    expect(localStorage.__STORE__['questions']).toBe(expected)
   })
 
   test('it should dispatch an error when an exception occurs', () => {
-    const iterator = createQuestion();
-    iterator.next();
+    const iterator = createQuestion()
+    iterator.next()
 
-    const error = new Error('it\'s a trap')
+    const error = new Error("it's a trap")
     const expected = put(addQuestionError(error.message))
-    const actual = iterator.throw(error).value;
-    expect(actual).toEqual(expected);
+    const actual = iterator.throw(error).value
+    expect(actual).toEqual(expected)
   })
 })

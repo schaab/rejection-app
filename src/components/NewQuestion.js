@@ -99,7 +99,8 @@ NewQuestion.propTypes = {
   dispatchAddQuestion: PropTypes.func.isRequired,
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ dispatchAddQuestion: addQuestion }, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ dispatchAddQuestion: addQuestion }, dispatch)
 
 export default compose(
   withStyles(styles),

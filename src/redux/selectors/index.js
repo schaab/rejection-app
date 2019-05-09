@@ -1,1 +1,1 @@
-export const questionsSelector = ({ questions  }) => questions
+export const questionsSelector = ({ questions }) => questions
