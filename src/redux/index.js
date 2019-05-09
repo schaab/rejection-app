@@ -1,37 +1,5 @@
 import { combineReducers } from 'redux'
 
-let nextId = 1
-export const addQuestion = ({
-  question = 'What is your name',
-  askee = 'stranger',
-  status = 'Rejected',
-} = {}) => ({
-  type: addQuestion.type,
-  payload: {
-    id: `${nextId++}`,
-    question,
-    askee,
-    status,
-    time: Date(),
-  },
-})
-addQuestion.type = 'ADD_QUESTION'
-
-export const addQuestionError = ({
-  message = 'failure',
-} = {}) => ({
-  type: addQuestionError.type,
-  payload: {
-    message,
-  }
-})
-addQuestionError.type = 'ADD_QUESTION_ERROR'
-
-export const addQuestionSuccess = () => ({
-  type: addQuestionSuccess.type,
-})
-addQuestionSuccess.type = 'ADD_QUESTION_SUCCESS'
-
 export const updateQuestion = ({ question = 'Nothing to see here' } = {}) => ({
   type: updateQuestion.type,
   payload: { question },
@@ -49,6 +17,11 @@ export const updateStatus = ({ status = 'Rejected' } = {}) => ({
   payload: { status },
 })
 updateStatus.type = 'UPDATE_STATUS'
+
+export const questionSubmitted = () => ({
+  type: questionSubmitted.type,
+});
+questionSubmitted.type = 'QUESTION_SUBMITTED';
 
 const initialState = {
   question: '',
@@ -76,27 +49,64 @@ export const newQuestionReducer = (
         ...state,
         status: payload.status,
       }
-    case addQuestionSuccess.type:
+    case questionSubmitted.type:
       return initialState
     default:
       return state
   }
 }
 
+export const addQuestion = ({
+  question = 'What is your name',
+  askee = 'stranger',
+  status = 'Rejected',
+} = {}) => ({
+  type: addQuestion.type,
+  payload: {
+    question,
+    askee,
+    status,
+    time: Date(),
+  },
+})
+addQuestion.type = 'ADD_QUESTION'
+
+export const addQuestionError = ({
+  message = 'failure',
+} = {}) => ({
+  type: addQuestionError.type,
+  payload: {
+    message,
+  }
+})
+addQuestionError.type = 'ADD_QUESTION_ERROR'
+
+export const loadQuestions = ({ questions = [] } = {}) => ({
+  type: loadQuestions.type,
+  payload: {
+    questions,
+  }
+})
+loadQuestions.type = 'LOAD_QUESTIONS'
+
 export const questionsReducer = (
   state = [],
   { type = '', payload = {} } = {}
 ) => {
   switch (type) {
-    case addQuestion.type:
-      return [...state, payload];
+    case addQuestion.type: 
+    {
+      const nextId = state.reduce((a, b) => Math.max(a, b), 0)
+      return [...state, { ...payload, id: nextId + 1 }]
+    }
+    case loadQuestions.type:
+      return payload.questions
     default:
       return state
   }
 }
 
 const rejectionApp = combineReducers({
-  newQuestionReducer,
   questions: questionsReducer,
 })
 

@@ -14,15 +14,14 @@ import { questionsSelector } from '../selectors';
 
 const setQuestions = (questions) => localStorage.setItem('questions', questions)
 
-export function* createQuestion({ payload = {} } = {}) {
+export function* createQuestion() {
   try {
     const questions = yield select(questionsSelector)
 
     yield call(
       setQuestions,
-      JSON.stringify([...questions, payload])
+      JSON.stringify([...questions])
     )
-    yield put(addQuestionSuccess())
   } catch (e) {
     yield put(addQuestionError(e.message))
   }

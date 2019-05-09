@@ -1,7 +1,7 @@
 import { runSaga } from 'redux-saga'
 import { put } from 'redux-saga/effects'
 import { createQuestion } from '../index'
-import { addQuestion, addQuestionSuccess, addQuestionError } from '../../index'
+import { addQuestion, addQuestionError } from '../../index'
 
 describe('getQuestions', () => {
   beforeEach(() => {
@@ -14,17 +14,11 @@ describe('getQuestions', () => {
     runSaga(
       {
         dispatch: action => dispatched.push(action),
-        getState: () => ({ questions: [] }),
+        getState: () => ({ questions: [addQuestionAction.payload] }),
       },
-      createQuestion,
-      addQuestionAction,
+      createQuestion
     )
 
-    expect(dispatched).toEqual([
-      {
-        type: addQuestionSuccess.type,
-      },
-    ])
     const expected = JSON.stringify([addQuestionAction.payload]);
     expect(localStorage.__STORE__['questions']).toBe(expected);
   })

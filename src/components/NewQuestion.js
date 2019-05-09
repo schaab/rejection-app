@@ -16,6 +16,7 @@ import {
   updateAskee,
   updateStatus,
   addQuestion,
+  questionSubmitted,
 } from '../redux'
 
 const styles = theme => ({
@@ -37,6 +38,7 @@ const NewQuestion = ({ classes = {}, dispatchAddQuestion }) => {
   const handleOnClick = () => {
     const { question, askee, status } = state
     dispatchAddQuestion({ question, askee, status })
+    dispatch(questionSubmitted())
   }
 
   return (
