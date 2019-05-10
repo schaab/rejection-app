@@ -1,5 +1,5 @@
 import { all, takeEvery, put, call, select } from 'redux-saga/effects'
-import { addQuestion, addQuestionSuccess, addQuestionError } from '../index'
+import { addQuestion, addQuestionError } from '../index'
 import { questionsSelector } from '../selectors'
 
 const setQuestions = questions => localStorage.setItem('questions', questions)
