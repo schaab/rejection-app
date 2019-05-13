@@ -1,9 +1,9 @@
 const questionStatusToScore = ({ status }) => {
-    if (status === 'Accepted') {
-        return 1;
-    }
-    
-    return status === 'Rejected' ? 10 : 0
+  if (status === 'Accepted') {
+    return 1
+  }
+
+  return status === 'Rejected' ? 10 : 0
 }
 
 export const scoreSelector = (questions = []) =>
