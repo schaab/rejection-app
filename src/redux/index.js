@@ -66,7 +66,7 @@ export const addQuestion = ({
     question,
     askee,
     status,
-    time: Date(),
+    time: Date.now(),
   },
 })
 addQuestion.type = 'ADD_QUESTION'
@@ -93,7 +93,7 @@ export const questionsReducer = (
 ) => {
   switch (type) {
     case addQuestion.type: {
-      const nextId = state.reduce((a, b) => Math.max(a, b), 0)
+      const nextId = state.reduce((a, b) => Math.max(a.id, b.id), { id: 0 })
       return [...state, { ...payload, id: nextId + 1 }]
     }
     case loadQuestions.type:
