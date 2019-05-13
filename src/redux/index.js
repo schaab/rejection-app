@@ -93,7 +93,8 @@ export const questionsReducer = (
 ) => {
   switch (type) {
     case addQuestion.type: {
-      const nextId = state.reduce((a, b) => Math.max(a.id, b.id), { id: 0 })
+      const nextId = state.map(({ id }) => id)
+              .reduce((a, b) => Math.max(a, b), 0)
       return [...state, { ...payload, id: nextId + 1 }]
     }
     case loadQuestions.type:
