@@ -22,18 +22,19 @@ describe('questions reducer', () => {
     time,
   })
 
-  const toAssertionObj = (question) => {
+  const toAssertionObj = question => {
     question.id = !!question.id
     question.time = !!question.time
     return question
-  };
+  }
   const mapToAssertionObj = (state = []) => state.map(toAssertionObj)
 
-  test(`given an ${addQuestion.type} it should add the question when there are no questions in state`, () => {
-    
+  test(`given an ${
+    addQuestion.type
+  } it should add the question when there are no questions in state`, () => {
     const actual = pipe(
       () => questionsReducer(undefined, addQuestion()),
-      mapToAssertionObj,
+      mapToAssertionObj
     )()
 
     const expected = [
@@ -42,13 +43,15 @@ describe('questions reducer', () => {
         question: 'What is your name',
         askee: 'stranger',
         status: 'Rejected',
-        time: true
-      }
+        time: true,
+      },
     ]
     expect(actual).toEqual(expected)
-  });
+  })
 
-  test(`given an ${addQuestion.type} it should add the question when there are questions in state`, () => {
+  test(`given an ${
+    addQuestion.type
+  } it should add the question when there are questions in state`, () => {
     const initialState = [
       createQuestion({
         id: 22,
@@ -60,7 +63,7 @@ describe('questions reducer', () => {
 
     const actual = pipe(
       () => questionsReducer(initialState, addQuestion()),
-      mapToAssertionObj,
+      mapToAssertionObj
     )()
 
     const expected = [
@@ -76,9 +79,9 @@ describe('questions reducer', () => {
         question: 'What is your name',
         askee: 'stranger',
         status: 'Rejected',
-        time: true
-      }
+        time: true,
+      },
     ]
     expect(actual).toEqual(expected)
-  });
+  })
 })
