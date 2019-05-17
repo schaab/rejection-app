@@ -22,7 +22,9 @@ const App = ({ questions, score, dispatchLoadQuestions }) => {
     <Paper>
       <NewQuestion />
       <QuestionList questions={questions} />
-      <div><strong>Score:</strong> {score}</div>
+      <div>
+        <strong>Score:</strong> {score}
+      </div>
     </Paper>
   )
 }
@@ -36,7 +38,7 @@ App.propTypes = {
       askee: PropTypes.string,
       status: PropTypes.oneOf(['Rejected', 'Accepted']),
       time: PropTypes.instanceOf(Date),
-    }),
+    })
   ),
   score: PropTypes.number,
 }

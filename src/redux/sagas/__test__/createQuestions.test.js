@@ -14,10 +14,10 @@ describe('getQuestions', () => {
   })
 
   test('it should store the questions', () => {
-      const actual = iterator.next([]).value
-      const expected = call(setQuestions, JSON.stringify([]))
-      
-      expect(actual).toEqual(expected)
+    const actual = iterator.next([]).value
+    const expected = call(setQuestions, JSON.stringify([]))
+
+    expect(actual).toEqual(expected)
   })
 
   test('it should dispatch an error when an exception occurs', () => {
