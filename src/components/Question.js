@@ -8,11 +8,12 @@ const Question = ({
   question = '',
   askee = 'Unknown',
   status = 'Rejected',
+  time,
 }) => {
   return (
     <ListItem>
       <QuestionIcon status={status} />
-      <ListItemText primary={question} secondary={askee} />
+      <ListItemText primary={`${question} - ${askee}`} secondary={time} />
     </ListItem>
   )
 }
@@ -21,6 +22,7 @@ Question.propTypes = {
   question: PropTypes.string,
   askee: PropTypes.string,
   status: PropTypes.oneOf(['Accepted', 'Rejected']),
+  time: PropTypes.instanceOf(Date),
 }
 
 Question.displayName = 'Question'

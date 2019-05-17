@@ -1,26 +1,23 @@
-import { runSaga } from 'redux-saga'
-import { put } from 'redux-saga/effects'
-import { createQuestion } from '../index'
+import { put, select, call } from 'redux-saga/effects'
+import { createQuestion, setQuestions } from '../index'
+import { questionsSelector } from '../../selectors'
 import { addQuestion, addQuestionError } from '../../index'
 
 describe('getQuestions', () => {
-  beforeEach(() => {
-    localStorage.clear()
+  const iterator = createQuestion()
+
+  test('it should grab all the questions', () => {
+    const actual = iterator.next().value
+    const expected = select(questionsSelector)
+
+    expect(actual).toEqual(expected)
   })
 
-  test('given a new question it should put it in localStorage', () => {
-    const dispatched = []
-    const addQuestionAction = addQuestion()
-    runSaga(
-      {
-        dispatch: action => dispatched.push(action),
-        getState: () => ({ questions: [addQuestionAction.payload] }),
-      },
-      createQuestion
-    )
-
-    const expected = JSON.stringify([addQuestionAction.payload])
-    expect(localStorage.__STORE__['questions']).toBe(expected)
+  test('it should store the questions', () => {
+      const actual = iterator.next([]).value
+      const expected = call(setQuestions, JSON.stringify([]))
+      
+      expect(actual).toEqual(expected)
   })
 
   test('it should dispatch an error when an exception occurs', () => {
@@ -28,7 +25,7 @@ describe('getQuestions', () => {
     iterator.next()
 
     const error = new Error("it's a trap")
-    const expected = put(addQuestionError(error.message))
+    const expected = put(addQuestionError())
     const actual = iterator.throw(error).value
     expect(actual).toEqual(expected)
   })

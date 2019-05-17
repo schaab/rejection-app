@@ -5,10 +5,11 @@ import { connect } from 'react-redux'
 import Paper from '@material-ui/core/Paper'
 import { bindActionCreators } from 'redux'
 import { loadQuestions } from '../redux'
+import { scoreSelector } from '../redux/selectors'
 import QuestionList from './QuestionList'
 import NewQuestion from './NewQuestion'
 
-const App = ({ questions, dispatchLoadQuestions }) => {
+const App = ({ questions, score, dispatchLoadQuestions }) => {
   useEffect(() => {
     const questionsJson = localStorage.getItem('questions')
     const payload = {
@@ -21,6 +22,7 @@ const App = ({ questions, dispatchLoadQuestions }) => {
     <Paper>
       <NewQuestion />
       <QuestionList questions={questions} />
+      <div><strong>Score:</strong> {score}</div>
     </Paper>
   )
 }
@@ -34,12 +36,14 @@ App.propTypes = {
       askee: PropTypes.string,
       status: PropTypes.oneOf(['Rejected', 'Accepted']),
       time: PropTypes.instanceOf(Date),
-    })
+    }),
   ),
+  score: PropTypes.number,
 }
 
 const mapStateToProps = ({ questions }) => ({
   questions,
+  score: scoreSelector(questions),
 })
 
 const mapDispatchToProps = dispatch =>

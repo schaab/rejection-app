@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import List from '@material-ui/core/List'
 import Question from './Question'
 
-const toQuestionComponent = ({ id, question, askee, status }) => (
-  <Question key={id} question={question} askee={askee} status={status} />
+const toQuestionComponent = ({ id, question, askee, status, time }) => (
+  <Question key={id} question={question} askee={askee} status={status} time={time}/>
 )
 
 const QuestionList = ({ questions = [] }) => {
@@ -22,6 +22,7 @@ QuestionList.propTypes = {
       question: PropTypes.string,
       askee: PropTypes.string,
       status: PropTypes.string,
+      time: PropTypes.instanceOf(Date)
     })
   ),
 }

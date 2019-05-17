@@ -8,3 +8,5 @@ const questionStatusToScore = ({ status }) => {
 
 export const scoreSelector = (questions = []) =>
   questions.map(questionStatusToScore).reduce((a, b) => a + b, 0)
+
+export const questionsSelector = ({ questions }) => questions
