@@ -8,6 +8,7 @@ import { loadQuestions } from '../redux'
 import { scoreSelector } from '../redux/selectors'
 import QuestionList from './QuestionList'
 import NewQuestion from './NewQuestion'
+import Score from './Score'
 
 const App = ({ questions, score, dispatchLoadQuestions }) => {
   useEffect(() => {
@@ -22,9 +23,7 @@ const App = ({ questions, score, dispatchLoadQuestions }) => {
     <Paper>
       <NewQuestion />
       <QuestionList questions={questions} />
-      <div>
-        <strong>Score:</strong> {score}
-      </div>
+      <Score score={score} />
     </Paper>
   )
 }

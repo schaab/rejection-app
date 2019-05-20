@@ -1,7 +1,7 @@
 import { put, select, call } from 'redux-saga/effects'
 import { createQuestion, setQuestions } from '../index'
 import { questionsSelector } from '../../selectors'
-import { addQuestion, addQuestionError } from '../../index'
+import { addQuestionError } from '../../index'
 
 describe('getQuestions', () => {
   const iterator = createQuestion()
